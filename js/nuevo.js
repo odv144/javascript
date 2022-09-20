@@ -94,3 +94,4 @@ window.fetch(url1)
 	.then(data =>{
 		console.log(data);
 	})
+	
