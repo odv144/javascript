@@ -35,9 +35,37 @@ funcion flag <- menu()
 	leer op
 	segun op Hacer
 		1:
-			ejercicio6()
+			ejercicio1()
 		2: 
+			ejercicio2()
+		3: 
+			ejercicio3()	
+		4: 
+			ejercicio4()
+		5: 
+			ejercicio5()
+		6: 
+			ejercicio6()	
+		7: 
 			ejercicio7()
+		8: 
+			ejercicio8()
+		9: 
+			ejercicio9()
+		10: 
+			ejercicio10()
+		11: 
+			ejercicio11()
+		12: 
+			ejercicio12()
+		13: 
+			ejercicio13()
+		14: 
+			ejercicio14()	
+		15: 
+			ejercicio15()
+		16: 
+			ejercicio16()
 		99:
 			flag=falso
 		De Otro Modo:
@@ -45,82 +73,129 @@ funcion flag <- menu()
 	FinSegun
 FinSubProceso
 
-//*****************************inicio ejercicio 6 ***************************************************
-SubProceso ejercicio6()
-	definir vector,str,simbolo Como caracter
-	definir i,pos como entero
-	Dimension vector[20]
-	Escribir "Ingrese frase a cargar"
-	leer str
-	para i<- 0 hasta 19 Hacer
-		si (i <= Longitud(str)-1) entonces
-			vector[i] = subcadena(str,i,i)
-		SiNo
-			vector[i]=" "
-		FinSi
-		
+//*****************************inicio ejercicio 1 ***************************************************
+SubProceso ejercicio1()
+	definir vector1, vector2 Como entero
+	definir a como entero
+	Dimension vector1[5], vector2[5]
+	para a<- 0 hasta 4 Hacer
+		vector1[a]=Aleatorio(0,100)	
+		vector2[a]=Aleatorio(0,100)	
 	FinPara
-	
-	Escribir sin saltar "Ingrese el caracter que desea"
-	leer simbolo
-	Escribir sin saltar "Ingrese la posicion a insertar"
-	leer pos
-	si(pos<20)Entonces
-		si ( (vector[pos] = " " )) entonces
-			vector[pos]=simbolo
-		SiNo
-			Escribir "La posición no se encuentra vacia"
-		FinSi
-	SiNo
-		Escribir "Posicion fuera de rango"
-	FinSi
-	
-	para i<- 0 hasta 19 Hacer
-		Escribir sin saltar vector[i] 
+	Escribir "Valores del vector 1"
+	para a<- 0 hasta 4 Hacer
+		Escribir sin saltar vector1[a] "|"	
+	FinPara
+	Escribir ""
+	Escribir "Valores del vector 2"
+	para a<- 0 hasta 4 Hacer
+		Escribir sin saltar vector2[a] "|"	
 	FinPara
 	Escribir ""
 	Escribir "Precione una tecla para volver al menu"
 	Esperar Tecla
 Fin SubProceso
-//***************************inicio ejercicio 7 ********************************************************
-SubProceso ejercicio7 
-	definir v1,v2 Como entero
-	definir i,can como entero
-	definir distintos Como Logico
-	Escribir "Ingrese cantidad de elementos del vector"
-	leer can
-	Dimension v1[can]
-	Dimension v2[can]
-	distintos = falso
-	para i<- 0 hasta can-1 Hacer
-		v1[i] = Aleatorio(1,100)
-		v2[i] = Aleatorio(1,100)
-	FinPara
-	
-	para i<- 0 hasta can-1 Hacer
-		si (v1[i] <> v2[i] )Entonces
-			distintos=verdadero
-		FinSi
-	FinPara
-	si distintos Entonces
-		Escribir "Los vectores cargados aleatoriamente son distintos"
-	SiNo
-		Escribir "Los vectores son iguales"
-	FinSi
-	Escribir "--------------------------------------"
-	Escribir "El vector 1 fue cargado con "
-	para i<- 0 hasta can-1 Hacer
-		escribir sin saltar v1[i] " "
-	FinPara
-	Escribir ""
-	Escribir "--------------------------------------"
-	Escribir "El vector 2 fue cargado con "
-	para i<- 0 hasta can-1 Hacer
-		escribir sin saltar v2[i] " "
-	finpara
+//***************************inicio ejercicio 2 ********************************************************
+SubProceso ejercicio2() 
 	
 	Escribir ""
 	Escribir "Precione una tecla para volver al menu"
 	Esperar Tecla	
 FinSubProceso
+//***************************inicio ejercicio 3 ********************************************************
+SubProceso ejercicio3() 
 	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso	
+//***************************inicio ejercicio 4 ********************************************************
+SubProceso ejercicio4() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 5 ********************************************************
+SubProceso ejercicio5() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 6********************************************************
+SubProceso ejercicio6() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 7 ********************************************************
+SubProceso ejercicio7() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 8 ********************************************************
+SubProceso ejercicio8() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 9 ********************************************************
+SubProceso ejercicio9() 	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 10 ********************************************************
+SubProceso ejercicio10() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 11 ********************************************************
+SubProceso ejercicio11() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 12 ********************************************************
+SubProceso ejercicio12() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 13 ********************************************************
+SubProceso ejercicio13() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 14 ********************************************************
+SubProceso ejercicio14() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 15 ********************************************************
+SubProceso ejercicio15() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
+//***************************inicio ejercicio 16 ********************************************************
+SubProceso ejercicio16() 
+	
+	Escribir ""
+	Escribir "Precione una tecla para volver al menu"
+	Esperar Tecla	
+FinSubProceso
