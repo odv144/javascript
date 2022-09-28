@@ -12,7 +12,9 @@ Algoritmo sin_titulo
 	
 	agregarPalabra(tablero,f,c,palabra)
 	
-	buscarR(posicion,f,palabra)
+	buscarR(posicionR,f,palabra)
+	
+	acomodarPalabra(tablero,f,c,palabra,posicionR)
 	
 	imprimirMatriz[tablero,f,c]
 FinAlgoritmo
@@ -21,7 +23,8 @@ SubProceso cargarPalabras(palabra,f)
 	definir i como entero
 	para i<-0 hasta f-1 Hacer
 		Escribir sin saltar "Ingrese la palabra "
-		leer Mayusculas(palabra[i])
+		leer palabra[i]
+		palabra[i]= Mayusculas(palabra[i])
 	FinPara
 FinSubProceso
 
@@ -55,13 +58,28 @@ SubProceso agregarPalabra(tablero,f,c,palabra)
 	FinPara
 FinSubProceso
 
-SubProceso buscarR(posicion,f,palabra)
+SubProceso buscarR(posicionR,f,palabra)
 	definir i,j Como Entero
 	
 	para i<- 0 hasta f-1 Hacer
 		para j<- longitud(palabra[i]) hasta 0 Con Paso -1 Hacer
 			si (Subcadena(palabra[i],j,j)= "R" ) Entonces
-				
+				posicionR[i]=j
+			FinSi
+		FinPara
+	FinPara
+	
+FinSubProceso
+
+SubProceso acomodarPalabra(tablero,f,c,palabra,posicionR)
+	definir i,j, aux Como Entero
+	para i<- 0 hasta f-1 Hacer
+		para j<-0 hasta c-1 Hacer
+			si posicionR[i]<5 Entonces
+				aux = 5- posicionR[i]
+				para x<- 0 hasta c-1 Hacer
+					si x<aux o x> tablero[i,x]="*" //rellenando con aasteriscos y corriendo la palabra
+				FinPara
 			FinSi
 		FinPara
 	FinPara
