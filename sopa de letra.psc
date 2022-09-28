@@ -10,11 +10,11 @@ Proceso moverPalabra
 		
 		agregarPalabraVerti(matriz,tam) // para agregar palabra vertical normal
 		
-		//agregarPalabraVertiInv(matriz,tam)//para agergar palabra vertical invertida
+		agregarPalabraVertiInv(matriz,tam)//para agergar palabra vertical invertida
 		
 		agregarPalabraHori(matriz,tam)//para agregar palabra horizontales normal
 		
-		//agregarPalabraHoriInv(matriz, tam)//para agregar palabras horizontales invertida
+		agregarPalabraHoriInv(matriz, tam)//para agregar palabras horizontales invertida
 		
 		//reemplazarValores(matriz,tam)
 		
@@ -32,7 +32,8 @@ SubProceso inicializar_matriz(matriz,tam)
 	definir letra como entero
 	para i<- 0 hasta tam-1 Hacer
 		para j<-0 hasta tam-1 Hacer
-			matriz[i,j]= asignar_letra(Falso)
+			matriz[i,j]="*"
+			//matriz[i,j]= asignar_letra(Falso)
 		FinPara
 	FinPara
 	
@@ -58,13 +59,13 @@ SubProceso agregarPalabraVerti(matriz, tam)
 	para canPal<-0 hasta 2 hacer
 		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
 		repetir
-		Escribir "Ingrese la palabra a agregar menor a:" tam
-		leer palabra
-		tamPal = longitud(palabra)
+			Escribir "Ingrese la palabra a agregar menor a:" tam
+			leer palabra
+			tamPal = longitud(palabra)
 		hasta que (tamPal< tam) 
 		
 		si tamPal<(tam-tamPal)entonces
-			posy= aleatorio(0,tam)
+			posy= aleatorio(0,tam-1)
 		SiNo
 			posy=0
 		finsi
@@ -98,7 +99,7 @@ SubProceso agregarPalabraVertiInv(matriz,tam)
 		hasta que (tamPal< tam) 
 		
 		si tamPal<(tam-tamPal)entonces
-			posy= aleatorio(0,tam)
+			posy= aleatorio(0,tam-1)
 		SiNo
 			posy=0
 		finsi
@@ -111,8 +112,10 @@ SubProceso agregarPalabraVertiInv(matriz,tam)
 				finsi
 			mientras que pos >(tamPal)
 			
-			para i<-0 hasta (tamPal-1) Hacer
-				matriz[i+pos,posy]= mayusculas(Subcadena(palabra,i,i))
+			para i<-0 hasta (tamPal-1)  Hacer
+				conLetra = tamPal-1-i
+				matriz[i+pos,posy]= mayusculas(Subcadena(palabra,conLetra,conLetra))
+				
 				
 			FinPara
 		FinSi
@@ -122,52 +125,52 @@ FinSubProceso
 //------------------agregar 3 palabras--horizontales invertidas---------------------------
 SubProceso  agregarPalabraHoriInv(matriz Por Referencia, tam)
 	definir palabra Como Caracter
-	definir tamPal, canPal,Pal,espacios, i,j,pos Como Entero
+	definir tamPal, canPal,Pal,espacios, i,j,pos,x, conLetra Como Entero
 	Dimension  pos[2]
 	definir flag Como Logico
 	flag = verdadero
 	para Pal<-0 hasta 2 hacer
-		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
-		
+		//ciclo para repetir hasta que se ingrese una palabra valida
 		repetir
 			Escribir "Ingrese palabra para agregar horizontal menores a:" tam
 			leer palabra
 			tamPal = longitud(palabra)
 		hasta que (tamPal< tam) 
 		
-		para i<-0 hasta tam-1 Hacer
-			j=0
-			mientras (j<tam-1 y flag) hacer 
-				espacios=0
-				mientras (matriz[i,j] = "*" y j<tam-1)  Hacer
-					espacios = espacios +1
-					si j<tam-1 Entonces
-						j = j+1
-					SiNo
-						j  = 0
-					FinSi
-				FinMientras
-				si espacios >= tamPal Entonces
-					pos[0] = i
-					pos[1]= j-espacios
-					flag = falso
-				sino 
-					espacios = 0
-				FinSi
-				j=j+1
-			FinMientras
-			si j < tam-1 Entonces
+		x=0
+		mientras (x<tam-1 y flag) hacer 
+			espacios=0
+			si (tamPal< tam-3) entonces
+				j=aleatorio(0,tam-1)
+			sino
 				j=0
-			SiNo
-				j = j+1
 			FinSi
-		FinPara
+			
+			i=aleatorio(0,tam-1)
+			mientras (matriz[i,j] = "*" y j<tam-1 )  Hacer
+				espacios = espacios +1
+				si j<tam-1 Entonces
+					j = j+1
+				SiNo
+					j  = 0
+				FinSi
+			FinMientras
+			si espacios >= tamPal Entonces
+				pos[0] = i
+				pos[1]= j-espacios
+				flag = falso
+			sino 
+				espacios = 0
+			FinSi
+			x=x+1	
+		FinMientras
+		
 		si !flag Entonces
-			flag = Verdadero
-			j=0
 			para canPal<-0 hasta tamPal-1 Hacer
-				matriz[pos[0],pos[1]+Pal] =mayusculas(Subcadena(palabra,canPal,canPal))
+				conLetra = tamPal-1-canPal
+				matriz[pos[0],pos[1]+canPal] =mayusculas(Subcadena(palabra,conLetra,conLetra))
 			FinPara
+			flag=verdadero
 		FinSi
 		
 	FinPara
@@ -176,49 +179,51 @@ FinSubProceso
 //------------------agregar 3 palabras----horizontales---------------------------
 SubProceso agregarPalabraHori(matriz, tam)
 	definir palabra Como Caracter
-	definir tamPal, canPal,Pal,espacios, i,j,pos Como Entero
+	definir tamPal, canPal,Pal,espacios, i,j,pos,x Como Entero
 	Dimension  pos[2]
 	definir flag Como Logico
 	flag = verdadero
 	para Pal<-0 hasta 2 hacer
-		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
+		//ciclo para repetir hasta que se ingrese una palabra valida
 		repetir
 			Escribir "Ingrese palabra para agregar horizontal menores a:" tam
 			leer palabra
 			tamPal = longitud(palabra)
 		hasta que (tamPal< tam) 
 		
-		para i<-0 hasta tam-1 Hacer
-			j=0
-			mientras (j<tam-1 y flag) hacer 
-					espacios=0
-					mientras (matriz[i,j] = "*" y j<tam-1)  Hacer
-						espacios = espacios +1
-						si j<tam-1 Entonces
-							j = j+1
-						SiNo
-							j  = 0
-						FinSi
-					FinMientras
-					si espacios = tamPal Entonces
-						pos[0] = i
-						pos[1]= j-espacios
-						flag = falso
-					sino 
-						espacios = 0
-					FinSi
-					j=j+1
-			FinMientras
-			si j < tam-1 Entonces
+		x=0
+		mientras (x<tam-1 y flag) hacer 
+			espacios=0
+			si (tamPal< tam-3) entonces
+				j=aleatorio(0,tam-1)
+			sino
 				j=0
-			SiNo
-				j = j+1
 			FinSi
-		FinPara
+			
+			i=aleatorio(0,tam-1)
+			mientras (matriz[i,j] = "*" y j<tam-1 )  Hacer
+				espacios = espacios +1
+				si j<tam-1 Entonces
+					j = j+1
+				SiNo
+					j  = 0
+				FinSi
+			FinMientras
+			si espacios >= tamPal Entonces
+				pos[0] = i
+				pos[1]= j-espacios
+				flag = falso
+			sino 
+				espacios = 0
+			FinSi
+		x=x+1	
+		FinMientras
+		
 		si !flag Entonces
 			para canPal<-0 hasta tamPal-1 Hacer
 				matriz[pos[0],pos[1]+canPal] =mayusculas(Subcadena(palabra,canPal,canPal))
 			FinPara
+			flag=verdadero
 		FinSi
 		
 	FinPara
@@ -260,7 +265,7 @@ SubProceso rto <- asignar_letra(cambiar)
 		abc[11]="L"
 		abc[12]="M"
 		abc[13]="N"
-		abc[14]="Ñ"
+		abc[14]="Ã‘"
 		abc[15]="O"
 		abc[16]="P"
 		abc[17]="Q"
@@ -276,4 +281,3 @@ SubProceso rto <- asignar_letra(cambiar)
 		rto = Minusculas(abc[aleatorio(0,26)])
 	finsi
 Fin SubProceso
-
