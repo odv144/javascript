@@ -72,16 +72,20 @@ SubProceso buscarR(posicionR,f,palabra)
 FinSubProceso
 
 SubProceso acomodarPalabra(tablero,f,c,palabra,posicionR)
-	definir i,j, aux Como Entero
+	definir i,j, aux, x Como Entero
 	para i<- 0 hasta f-1 Hacer
 		para j<-0 hasta c-1 Hacer
-			si posicionR[i]<5 Entonces
-				aux = 5- posicionR[i]
+			aux = 5 - posicionR[i]
 				para x<- 0 hasta c-1 Hacer
-					si x<aux o x> tablero[i,x]="*" //rellenando con aasteriscos y corriendo la palabra
+					si x<aux o x>= (Longitud(palabra[i])+aux) entonces //rellenando con aasteriscos y corriendo la palabra
+						tablero[i,x]="*"
+					SiNo
+						tablero[i,x] = Subcadena(palabra[i],x-aux,x-aux)
+					FinSi
 				FinPara
-			FinSi
+		
+			
 		FinPara
 	FinPara
-FinSubProceso
 	
+FinSubProceso
