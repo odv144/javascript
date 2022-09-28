@@ -55,71 +55,109 @@ FinSubProceso
 //se agregara 3 palabras ingresadas por el usuario con longitud inferior al orden de la matriz -2 posiciones
 SubProceso agregarPalabraVerti(matriz, tam)
 	definir palabra Como Caracter
-	definir tamPal, canPal,conLetra, i,pos,posy Como Entero
-	para canPal<-0 hasta 2 hacer
-		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
+	definir tamPal, canPal,Pal,espacios, i,j,pos,x Como Entero
+	Dimension  pos[2]
+	definir flag Como Logico
+	flag = verdadero
+	para Pal<-0 hasta 2 hacer
+		//ciclo para repetir hasta que se ingrese una palabra valida
 		repetir
-			Escribir "Ingrese la palabra a agregar menor a:" tam
+			Escribir "Ingrese palabra para agregar vertical menores a:" tam
 			leer palabra
 			tamPal = longitud(palabra)
 		hasta que (tamPal< tam) 
 		
-		si tamPal<(tam-tamPal)entonces
-			posy= aleatorio(0,tam-1)
-		SiNo
-			posy=0
-		finsi
-		si tamPal < tam Entonces
-			repetir
-				si tamPal < (tam-tamPal) entonces
-					pos = aleatorio(0,(tam-tamPal))
-				sino 
-					pos = 0
-				finsi
-			mientras que pos >(tamPal)
+		x=0
+		mientras (x<tam-1 y flag) hacer 
+			espacios=0
+			si (tamPal< tam-3) entonces
+				i=aleatorio(0,tam-1)
+			sino
+				i=0
+			FinSi
 			
-			para i<-0 hasta (tamPal-1) Hacer
-				matriz[i+pos,posy]= mayusculas(Subcadena(palabra,i,i))
-				
+			j=aleatorio(0,tam-1)
+			mientras (matriz[i,j] = "*" y i<tam-1 )  Hacer
+				espacios = espacios +1
+				si i<tam-1 Entonces
+					i = i+1
+				SiNo
+					i  = 0
+				FinSi
+			FinMientras
+			si espacios >= tamPal Entonces
+				pos[0] = i-espacios
+				pos[1]= j
+				flag = falso
+			sino 
+				espacios = 0
+			FinSi
+			x=x+1	
+		FinMientras
+		
+		si !flag Entonces
+			para canPal<-0 hasta tamPal-1 Hacer
+				matriz[pos[0]+canPal,pos[1]] =mayusculas(Subcadena(palabra,canPal,canPal))
 			FinPara
+			flag=verdadero
 		FinSi
+		
 	FinPara
-	
+
 FinSubProceso
 //------------------agregar 3 palabras-verticales invertidas---------------------------
 SubProceso agregarPalabraVertiInv(matriz,tam)
 	definir palabra Como Caracter
-	definir tamPal, canPal,conLetra, i,pos,posy Como Entero
-	para canPal<-0 hasta 2 hacer
-		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
+	definir tamPal, canPal,Pal,espacios, i,j,pos,x, conLetra Como Entero
+	Dimension  pos[2]
+	definir flag Como Logico
+	flag = verdadero
+	para Pal<-0 hasta 2 hacer
+		//ciclo para repetir hasta que se ingrese una palabra valida
 		repetir
-			Escribir "Ingrese la palabra a agregar menor a:" tam
+			Escribir "Ingrese palabra para agregar vertical menores a:" tam
 			leer palabra
 			tamPal = longitud(palabra)
 		hasta que (tamPal< tam) 
 		
-		si tamPal<(tam-tamPal)entonces
-			posy= aleatorio(0,tam-1)
-		SiNo
-			posy=0
-		finsi
-		si tamPal < tam Entonces
-			repetir
-				si tamPal < (tam-tamPal) entonces
-					pos = aleatorio(0,(tam-tamPal))
-				sino 
-					pos = 0
-				finsi
-			mientras que pos >(tamPal)
+		x=0
+		mientras (x<tam-1 y flag) hacer 
+			espacios=0
+			si (tamPal< tam-3) entonces
+				i=aleatorio(0,tam-1)
+			sino
+				i=0
+			FinSi
 			
-			para i<-0 hasta (tamPal-1)  Hacer
-				conLetra = tamPal-1-i
-				matriz[i+pos,posy]= mayusculas(Subcadena(palabra,conLetra,conLetra))
-				
-				
+			j=aleatorio(0,tam-1)
+			mientras (matriz[i,j] = "*" y i<tam-1 )  Hacer
+				espacios = espacios +1
+				si i<tam-1 Entonces
+					i = i+1
+				SiNo
+					i  = 0
+				FinSi
+			FinMientras
+			si espacios >= tamPal Entonces
+				pos[0] = i-espacios
+				pos[1]= j
+				flag = falso
+			sino 
+				espacios = 0
+			FinSi
+			x=x+1	
+		FinMientras
+		
+		si !flag Entonces
+			para canPal<-0 hasta tamPal-1 Hacer
+				conLetra = tamPal-1-canPal
+				matriz[pos[0]+canPal,pos[1]] =mayusculas(Subcadena(palabra,conLetra,conLetra))
 			FinPara
+			flag=verdadero
 		FinSi
+		
 	FinPara
+
 	
 FinSubProceso
 //------------------agregar 3 palabras--horizontales invertidas---------------------------
