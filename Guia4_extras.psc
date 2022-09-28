@@ -20,22 +20,6 @@ FinSubProceso
 //*************************************************************************************************************
 //FUNCION PARA ACOMODAR CUALQUIER CADENA PASANDO COMO DATO LOS ESPACIOS Y SI QUIERO AGREGAR UN SIMBOLO SEPARADO
 SubProceso rta<- rellenarEspaciosGral(dato,cantidad,simbolo)
-//	definir strDato,str, terminado, rta Como Caracter
-//	definir x,pos Como Entero
-//	strDato = simbolo+ConvertirATexto(dato)+simbolo
-//	pos = trunc((cantidad - Longitud(strDato))/2)	// Obtengo la posicion como para centrar entre los simbolos ej --345--
-//	Dimension  str[cantidad]		//dimensiono un vector para con la cantidad de espacios que tabulara
-//	para x<-0 hasta cantidad-1 Hacer	
-//		str[x]=" "
-//	FinPara
-//	para x<- 0 hasta longitud(strDato)-1  hacer
-//		str[x+pos] = subcadena(strDato,x,x) 
-//	Finpara
-//	terminado=""
-//	para x<- 0 hasta cantidad-1 Hacer
-//		terminado = terminado + str[x]
-//	FinPara
-	//	rta = terminado
 	definir strDato,str, terminado, rta Como Caracter
 	definir x,pos Como Entero
 	strDato = simbolo+ConvertirATexto(dato)+simbolo
@@ -75,7 +59,7 @@ funcion flag <- menu()
 	definir op como entero
 	flag = verdadero
 	Limpiar Pantalla
-	Escribir "Resolucion Ejercicios Extra Guia 4"
+	Escribir "----RESOLUCION EJERCICIOS EXTRAS GUIA 4----"
 	Escribir "01 - Rellenar 2 Vectores"
 	Escribir "02 - Rellenar 1 Vector de tamaño N"
 	Escribir "03 - Ejercicio 3"
@@ -84,7 +68,6 @@ funcion flag <- menu()
 	Escribir "06 - Diferencia entre mas chico y mas grande"
 	Escribir "07 - Funcion recursiva de arreglo no pude resolver todavia"
 	Escribir "08 - Producto de un vector"
-	Escribir "-------Arreglos: Matrices----------------"
 	Escribir "09 - Rellenar y Mostrar matriz de valor aleatorio"
 	Escribir "10 - Matriz Traspuesta"
 	Escribir "11 - Marco de matriz"
@@ -147,12 +130,12 @@ SubProceso ejercicio1()
 	FinPara
 	Escribir "Valores del vector 1"
 	para a<- 0 hasta 4 Hacer
-		Escribir sin saltar vector1[a] "|"	
+		Escribir sin saltar rellenarEspaciosGral(vector1[a],5 ,"|")	
 	FinPara
 	Escribir ""
 	Escribir "Valores del vector 2"
 	para a<- 0 hasta 4 Hacer
-		Escribir sin saltar vector2[a] "|"	
+		Escribir sin saltar rellenarEspaciosGral(vector2[a] , 5, "|")	
 	FinPara
 	Escribir ""
 	Escribir "Precione una tecla para volver al menu"
