@@ -8,11 +8,15 @@ Proceso moverPalabra
 		Dimension matriz[tam,tam]
 		inicializar_matriz(matriz,tam)
 		
-		agregarPalabraVerti(matriz,tam)
+		agregarPalabraVerti(matriz,tam) // para agregar palabra vertical normal
 		
-		agregarPalabraHori(matriz,tam)
+		//agregarPalabraVertiInv(matriz,tam)//para agergar palabra vertical invertida
 		
-		reemplazarValores(matriz,tam)
+		agregarPalabraHori(matriz,tam)//para agregar palabra horizontales normal
+		
+		//agregarPalabraHoriInv(matriz, tam)//para agregar palabras horizontales invertida
+		
+		//reemplazarValores(matriz,tam)
 		
 		imprimir_matriz(matriz,tam)
 		Escribir "Precione una tecla para volver al menu"
@@ -81,15 +85,102 @@ SubProceso agregarPalabraVerti(matriz, tam)
 	FinPara
 	
 FinSubProceso
-
-//------------------agregar 3 palabras----horizontales---------------------------
-SubProceso agregarPalabraHori(matriz, tam)
+//------------------agregar 3 palabras-verticales invertidas---------------------------
+SubProceso agregarPalabraVertiInv(matriz,tam)
 	definir palabra Como Caracter
-	definir tamPal, canPal,espacios, i,j,pos Como Entero
+	definir tamPal, canPal,conLetra, i,pos,posy Como Entero
+	para canPal<-0 hasta 2 hacer
+		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
+		repetir
+			Escribir "Ingrese la palabra a agregar menor a:" tam
+			leer palabra
+			tamPal = longitud(palabra)
+		hasta que (tamPal< tam) 
+		
+		si tamPal<(tam-tamPal)entonces
+			posy= aleatorio(0,tam)
+		SiNo
+			posy=0
+		finsi
+		si tamPal < tam Entonces
+			repetir
+				si tamPal < (tam-tamPal) entonces
+					pos = aleatorio(0,(tam-tamPal))
+				sino 
+					pos = 0
+				finsi
+			mientras que pos >(tamPal)
+			
+			para i<-0 hasta (tamPal-1) Hacer
+				matriz[i+pos,posy]= mayusculas(Subcadena(palabra,i,i))
+				
+			FinPara
+		FinSi
+	FinPara
+	
+FinSubProceso
+//------------------agregar 3 palabras--horizontales invertidas---------------------------
+SubProceso  agregarPalabraHoriInv(matriz Por Referencia, tam)
+	definir palabra Como Caracter
+	definir tamPal, canPal,Pal,espacios, i,j,pos Como Entero
 	Dimension  pos[2]
 	definir flag Como Logico
 	flag = verdadero
-	para canPal<-0 hasta 2 hacer
+	para Pal<-0 hasta 2 hacer
+		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
+		
+		repetir
+			Escribir "Ingrese palabra para agregar horizontal menores a:" tam
+			leer palabra
+			tamPal = longitud(palabra)
+		hasta que (tamPal< tam) 
+		
+		para i<-0 hasta tam-1 Hacer
+			j=0
+			mientras (j<tam-1 y flag) hacer 
+				espacios=0
+				mientras (matriz[i,j] = "*" y j<tam-1)  Hacer
+					espacios = espacios +1
+					si j<tam-1 Entonces
+						j = j+1
+					SiNo
+						j  = 0
+					FinSi
+				FinMientras
+				si espacios >= tamPal Entonces
+					pos[0] = i
+					pos[1]= j-espacios
+					flag = falso
+				sino 
+					espacios = 0
+				FinSi
+				j=j+1
+			FinMientras
+			si j < tam-1 Entonces
+				j=0
+			SiNo
+				j = j+1
+			FinSi
+		FinPara
+		si !flag Entonces
+			flag = Verdadero
+			j=0
+			para canPal<-0 hasta tamPal-1 Hacer
+				matriz[pos[0],pos[1]+Pal] =mayusculas(Subcadena(palabra,canPal,canPal))
+			FinPara
+		FinSi
+		
+	FinPara
+	
+FinSubProceso
+//------------------agregar 3 palabras----horizontales---------------------------
+SubProceso agregarPalabraHori(matriz, tam)
+	definir palabra Como Caracter
+	definir tamPal, canPal,Pal,espacios, i,j,pos Como Entero
+	Dimension  pos[2]
+	definir flag Como Logico
+	flag = verdadero
+	para Pal<-0 hasta 2 hacer
 		//por el numero aleatorio de la columna puede llegar a caer en la mismpa posicion y sobreescrbir la palabra
 		repetir
 			Escribir "Ingrese palabra para agregar horizontal menores a:" tam
