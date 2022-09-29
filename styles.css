@@ -91,8 +91,13 @@ body{
 	top:200px;
 	left:10px;
 	width:120px;
+<<<<<<< HEAD
 	//height:200px;
 	//background-color:#dcff73;
+=======
+	height:200px;
+	background-color:#dcff73;
+>>>>>>> 7262e2303717d471d8defd79b9ef7830226028b4
 }
 #frame-movil p{
 	display:flex;
@@ -117,6 +122,10 @@ body{
 }
 .texto{
 	color:#ffffff;
+<<<<<<< HEAD
 	//display:inline;
+=======
+	display:inline;
+>>>>>>> 7262e2303717d471d8defd79b9ef7830226028b4
 	margin:2px;
 }
